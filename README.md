@@ -103,7 +103,7 @@ Every vertex and edge is visited exactly once.
 
 **How does graph size affect BFS and DFS performance?**
 
-Larger graphs take longer proportionally. Since both algorithms are O(V + E), doubling the graph size roughly doubles the execution time. This was confirmed in the experiments: 100 vertices took about 6–7× longer than 10 vertices (edges also scaled).
+Larger graphs take longer proportionally. Since both algorithms are O(V + E), doubling the graph size roughly doubles the execution time. This was confirmed in the experiments: 100 vertices took about 6× longer than 10 vertices (edges also scaled).
 
 **Which traversal is faster in your experiments?**
 
