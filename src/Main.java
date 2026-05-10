@@ -1,7 +1,7 @@
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println("===== Small Graph (10 vertices) =====");
+        System.out.println("Small Graph:");
         Graph small = new Graph();
         for (int i = 0; i < 10; i++) small.addVertex(new Vertex(i));
 

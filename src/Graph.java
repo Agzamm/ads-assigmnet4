@@ -1,13 +1,7 @@
 import java.util.*;
 
 public class Graph {
-    private Map<Integer, Vertex> vertices;
-    private Map<Integer, List<Integer>> adjList;
-
-    public Graph() {
-        vertices = new HashMap<>();
-        adjList  = new HashMap<>();
-    }
+    private Map<Integer, List<Integer>> adjList = new HashMap<>();
 
     public void addVertex(Vertex v) {
         adjList.putIfAbsent(v.getId(), new ArrayList<>());
@@ -18,25 +12,20 @@ public class Graph {
     }
 
     public void printGraph() {
-        System.out.println("Graph adjacency list:");
-        for (int id : adjList.keySet()) {
-            System.out.println("  " + vertices.get(id) + " -> " + adjList.get(id));
-        }
+        for (int id : adjList.keySet())
+            System.out.println(id + " -> " + adjList.get(id));
     }
 
     public void bfs(int start) {
         Set<Integer> visited = new HashSet<>();
         Queue<Integer> queue = new LinkedList<>();
-
         visited.add(start);
         queue.add(start);
 
-        System.out.print("BFS from " + start + ": ");
-
+        System.out.print("BFS: ");
         while (!queue.isEmpty()) {
             int curr = queue.poll();
             System.out.print(curr + " ");
-
             for (int neighbor : adjList.get(curr)) {
                 if (!visited.contains(neighbor)) {
                     visited.add(neighbor);
@@ -48,24 +37,18 @@ public class Graph {
     }
 
     public void dfs(int start) {
-        Set<Integer> visited = new HashSet<>();
-        System.out.print("DFS from " + start + ": ");
-        dfsHelper(start, visited);
+        System.out.print("DFS: ");
+        dfsHelper(start, new HashSet<>());
         System.out.println();
     }
 
     private void dfsHelper(int curr, Set<Integer> visited) {
         visited.add(curr);
         System.out.print(curr + " ");
-
-        for (int neighbor : adjList.get(curr)) {
-            if (!visited.contains(neighbor)) {
+        for (int neighbor : adjList.get(curr))
+            if (!visited.contains(neighbor))
                 dfsHelper(neighbor, visited);
-            }
-        }
     }
 
-    public Set<Integer> getVertexIds() {
-        return vertices.keySet();
-    }
+    public Set<Integer> getVertexIds() { return adjList.keySet(); }
 }
