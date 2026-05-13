@@ -17,7 +17,7 @@ public class Experiment {
         Random rand = new Random(42);
         for (int i = 0; i < sizes.length; i++) {
             Graph g = buildGraph(sizes[i], rand);
-            System.out.println("Size: " + sizes[i]);
+            System.out.println("\n Size: " + sizes[i]);
             results[i] = runTraversals(g);
         }
     }
@@ -32,9 +32,18 @@ public class Experiment {
     private Graph buildGraph(int n, Random rand) {
         Graph g = new Graph();
         for (int i = 0; i < n; i++) g.addVertex(new Vertex(i));
-        for (int i = 0; i < n * 2; i++) {
-            int from = rand.nextInt(n), to = rand.nextInt(n);
-            if (from != to) g.addEdge(from, to);
+
+        for (int i = 0; i < n - 1; i++) g.addEdge(i, i + 1);
+
+        int extra = n * 2;
+        int added = 0;
+        while (added < extra) {
+            int from = rand.nextInt(n);
+            int to = rand.nextInt(n);
+            if (from != to) {
+                g.addEdge(from, to);
+                added++;
+            }
         }
         return g;
     }
